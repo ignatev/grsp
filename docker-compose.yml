@@ -1,0 +1,102 @@
+version: '2'
+services:
+  mongodb:
+    container_name: mongodb
+    image: 'bitnami/mongodb:3.6'
+    networks:
+      app_net:
+        aliases:
+          - mongo
+          - mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongodb:/bitnami'
+  zookeeper:
+    container_name: zk
+    image: debezium/zookeeper:${DEBEZIUM_VERSION}
+    networks:
+      app_net:
+        aliases:
+          - zk
+          - zookeeper
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+
+  kafka:
+    container_name: kafka
+    image: debezium/kafka:${DEBEZIUM_VERSION}
+    networks:
+      app_net:
+        aliases:
+          - kafka
+          - broker
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+     - KAFKA_ADVERTISED_HOST_NAME:0.0.0.0
+     - ADVERTISED_HOST_NAME:0.0.0.0
+  connect:
+    container_name: connect
+    image: debezium/connect:${DEBEZIUM_VERSION}
+    networks:
+      app_net:
+        aliases:
+          - connect
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - mysql
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+
+  mysql:
+    container_name: mysql
+    image: 'bitnami/mariadb:latest'
+    networks:
+      app_net:
+        aliases:
+          - db
+          - mysql
+    environment:
+     - MARIADB_ROOT_PASSWORD=debezium
+     - MARIADB_USER=mysqluser
+     - MARIADB_PASSWORD=mysqlpw
+     - MARIADB_DATABASE=ocstore
+    volumes:
+      - opencart-db:/bitnami
+    ports:
+      - '3306:3306'
+
+  opencart:
+    container_name: oc
+    image: 'ignatev/oc-installed-activated'
+    networks:
+      app_net:
+        aliases:
+          - oc
+    volumes:
+      - opencart:/var/www
+    depends_on:
+      - mysql
+    ports:
+      - '80:80'
+      - '443:443'
+
+networks:
+    app_net:
+      driver: bridge
+
+volumes:
+  opencart: {}
+  opencart-db: {}
+  mongodb: {}

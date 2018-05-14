@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+        debezium_version = '0.7.4'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'ru.grsp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 9
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile "io.debezium:debezium-embedded:$debezium_version"
+    compile "io.debezium:debezium-connector-mysql:$debezium_version"
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-jooq')
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+    compile('org.springframework.kafka:spring-kafka')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('io.projectreactor:reactor-test')
+}
