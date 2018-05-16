@@ -2,4 +2,8 @@ curl -H "Accept:application/json" localhost:8083/connectors/
 
 curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors -d @conf/mysql-connector.json
 
-curl -i -X GET -H "Accept:application/json" localhost:8083/connectors/store-connector
+curl -X GET -H "Accept:application/json" localhost:8083/connectors/store-connector | jq
+
+curl -X DELETE localhost:8083/connectors/store-connector
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
