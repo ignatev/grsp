@@ -5,11 +5,12 @@
     "tasks.max": "1",
     "database.hostname": "db",
     "database.port": "3306",
-    "database.user": "mysqluser",
-    "database.password": "mysqlpw",
+    "database.user": "store-connector",
+    "database.password": "psswd",
     "database.server.id": "184054",
     "database.server.name": "ocstore",
     "database.whitelist": "ocstore",
+    "table.whitelist": "ocstore.oc_order_product",
     "database.history.kafka.bootstrap.servers": "kafka:9092",
     "database.history.kafka.topic": "store.orders-by-manufacturer"
   }
