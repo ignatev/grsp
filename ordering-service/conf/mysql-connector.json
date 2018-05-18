@@ -1,5 +1,5 @@
 {
-  "name": "store-connector",
+  "name": "orders-connector",
   "config": {
     "connector.class": "io.debezium.connector.mysql.MySqlConnector",
     "tasks.max": "1",
@@ -10,8 +10,8 @@
     "database.server.id": "184054",
     "database.server.name": "ocstore",
     "database.whitelist": "ocstore",
-    "table.whitelist": "ocstore.oc_order_product",
+    "table.whitelist": "ocstore.oc_order_product, ocstore.oc_order",
     "database.history.kafka.bootstrap.servers": "kafka:9092",
-    "database.history.kafka.topic": "store.orders-by-manufacturer"
+    "database.history.kafka.topic": "store.orders-history"
   }
 }
