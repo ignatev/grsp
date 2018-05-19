@@ -5,11 +5,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "oc_order")
-public class Order {
-
+@Table(name = "oc_order_product")
+public class OrderProduct {
     @Id
     Integer id;
 
-
+    Integer productId;
 }
