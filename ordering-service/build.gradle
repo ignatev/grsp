@@ -43,8 +43,11 @@ dependencies {
             'ch.qos.logback:logback-core:1.2.3',
             'ch.qos.logback.contrib:logback-json-classic:0.1.5',
             'ch.qos.logback.contrib:logback-jackson:0.1.5',
-            'com.jayway.jsonpath:json-path:2.4.0'
-
+            'com.jayway.jsonpath:json-path:2.4.0',
+            'mysql:mysql-connector-java:8.0.11',
+            'org.jooq:jooq:3.10.7',
+            'org.jooq-meta:jooq:3.10.7',
+            'org.jooq-codegen:jooq:3.10.7'
 
     runtime 'org.springframework.boot:spring-boot-devtools'
     compileOnly 'org.projectlombok:lombok:1.16.20'

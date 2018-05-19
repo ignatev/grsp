@@ -11,3 +11,5 @@ curl -X DELETE localhost:8083/connectors/store-connector
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 al@lex.ey / 123456 - user
+
+java -classpath jooq-3.10.7.jar:jooq-meta-3.10.7.jar:jooq-codegen-3.10.7.jar:mysql-connector-java-8.0.11.jar:.org.jooq.util.GenerationTool ocstore.xml
