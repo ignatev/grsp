@@ -29,11 +29,8 @@ public class OrderConsumer {
     private void readToObject(String message) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualObj = mapper.readTree(message);
-        //log.info(actualObj.toString());
-        //log.info("processing : {}", message);
         String jsonExp = "$.payload.after";
         LinkedHashMap payload = JsonPath.read(actualObj.toString(), jsonExp);
-        //JsonNode node = mapper.readTree(payload);
         log.info("payload: {}", payload);
     }
 }

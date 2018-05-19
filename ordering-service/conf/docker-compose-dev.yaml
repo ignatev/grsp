@@ -15,9 +15,27 @@ services:
     environment:
      - ZOOKEEPER_CLIENT_PORT=2181
 
+  # kafka:
+  #   container_name: kafka
+  #   image: confluentinc/cp-kafka:4.1.0
+  #   networks:
+  #     app_net:
+  #       aliases:
+  #         - kafka
+  #         - broker
+  #   ports:
+  #    - 9092:9092
+  #   links:
+  #    - zookeeper
+  #   environment:
+  #    - KAFKA_BROKER_ID=1
+  #    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+  #    - KAFKA_ADVERTISED_HOST_NAME=0.0.0.0
+  #    - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+  #    - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
   kafka:
     container_name: kafka
-    image: confluentinc/cp-kafka:4.1.0
+    image: debezium/kafka:${DEBEZIUM_VERSION}
     networks:
       app_net:
         aliases:
@@ -28,11 +46,8 @@ services:
     links:
      - zookeeper
     environment:
-     - KAFKA_BROKER_ID=1
-     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-     - KAFKA_ADVERTISED_HOST_NAME=kafka
-     - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+
   connect:
     container_name: connect
     image: debezium/connect:${DEBEZIUM_VERSION}
@@ -46,10 +61,11 @@ services:
      - kafka
      - mysql
     environment:
-     - BOOTSTRAP_SERVERS=kafka:9092
-     - GROUP_ID=1
-     - CONFIG_STORAGE_TOPIC=my_connect_configs
-     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      BOOTSTRAP_SERVERS: 'kafka:9092'
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: my_connect_configs
+      OFFSET_STORAGE_TOPIC: my_connect_offsets
+      ZOOKEEPER_CONNECT: 'zookeeper:2181'
 
   mysql:
     container_name: mysql
