@@ -44,6 +44,7 @@ dependencies {
             'ch.qos.logback.contrib:logback-json-classic:0.1.5',
             'ch.qos.logback.contrib:logback-jackson:0.1.5',
             'com.jayway.jsonpath:json-path:2.4.0',
+            'org.javamoney:moneta:1.2.1',
 
             'org.springframework.boot:spring-boot-starter-data-jpa',
             'mysql:mysql-connector-java'
