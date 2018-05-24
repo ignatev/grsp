@@ -69,22 +69,18 @@ services:
     ports:
       - '3306:3306'
 
-
-       #  mysql:
-       #    image: debezium/example-mysql:${DEBEZIUM_VERSION}
-       #    networks:
-       #      app_net:
-       #        aliases:
-       #         - db
-       #         - mysql
-       #    ports:
-       #     - 3306:3306
-       #    volumes:
-       #     - opencart-db:/val/lib/mysql
-       #    environment:
-       #     - MYSQL_ROOT_PASSWORD=debezium
-       #     - MYSQL_USER=mysqluser
-       #     - MYSQL_PASSWORD=mysqlpw
+  mongodb:
+    container_name: mongodb
+    image: 'bitnami/mongodb:3.6'
+    networks:
+      sak_net:
+        aliases:
+          - mongo
+          - mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongodb_data:/bitnami'
 
   opencart:
     container_name: oc
