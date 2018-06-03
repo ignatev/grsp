@@ -11,6 +11,6 @@ spring:
         format_sql: true
         type: trace
   datasource:
-    url: jdbc:mysql://localhost:3306/ocstore
+    url: jdbc:mysql://mysql:3306/ocstore
     username: store-connector
     password: psswd

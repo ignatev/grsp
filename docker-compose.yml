@@ -1,5 +1,26 @@
 version: '2'
 services:
+  config-service:
+    container_name: config-service
+    image: ru.grsp/config-service:${GRSP_VERSION}
+    networks:
+      app_net:
+        aliases:
+          - config
+          - config-service
+    ports:
+      - 8888:8888
+
+  ordering-service:
+    container_name: ordering-service
+    image: ru.grsp/ordering-service:${GRSP_VERSION}
+    networks:
+      app_net:
+        aliases:
+          - order
+    ports:
+      - 8080:8080
+
   zookeeper:
     container_name: zk
     image: confluentinc/cp-zookeeper:4.1.0
@@ -33,6 +54,7 @@ services:
      - KAFKA_ADVERTISED_HOST_NAME=kafka
      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+
   connect:
     container_name: connect
     image: debezium/connect:${DEBEZIUM_VERSION}

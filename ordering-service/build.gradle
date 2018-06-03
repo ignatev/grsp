@@ -11,6 +11,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
 group = 'ru.grsp'
@@ -24,6 +25,12 @@ docker {
           project.file("src/main/docker/run.sh")
     dockerfile project.file("src/main/docker/Dockerfile")
     buildArgs(['JAR_FILE': "${bootJar.archiveName}", 'SERVICE_NAME': "${bootJar.baseName}"])
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-config:2.0.0.RC2"
+    }
 }
 
 dependencies {
@@ -57,7 +64,8 @@ dependencies {
             'org.javamoney:moneta:1.2.1',
 
             'org.springframework.boot:spring-boot-starter-data-jpa',
-            'mysql:mysql-connector-java'
+            'mysql:mysql-connector-java',
+            'org.springframework.cloud:spring-cloud-starter-config'
 
 
     runtime 'org.springframework.boot:spring-boot-devtools'

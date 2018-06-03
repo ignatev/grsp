@@ -12,3 +12,6 @@ public class ConfigServiceApplication {
         SpringApplication.run(ConfigServiceApplication.class, args);
     }
 }
+
+//TODO create local and docker profiles
+//TODO create product_order entities and methods

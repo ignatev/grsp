@@ -1,3 +1,4 @@
+/*
 package ru.grsp.backend.model;
 
 import lombok.Getter;
@@ -12,10 +13,14 @@ import javax.persistence.Table;
 @Table(name = "oc_order_product")
 public class OrderProduct {
     @Id
+    @Column(name = "order_product_id")
     Integer id;
+
     @Getter @Setter
     Integer productId;
+
     @Getter @Setter
     @Column(name = "order_id")
     Integer orderId;
 }
+*/

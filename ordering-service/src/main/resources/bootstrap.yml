@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ordering-service
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      uri: http://config-service:8888

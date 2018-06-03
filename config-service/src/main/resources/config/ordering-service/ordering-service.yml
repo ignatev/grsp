@@ -1,7 +1,7 @@
 tracer.property: "I AM THE DEFAULT"
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
   jpa:
     hibernate:
       ddl-auto: none
@@ -11,8 +11,9 @@ spring:
         use_sql_comments: true
         format_sql: true
         type: trace
+        dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/ocstore
+    url: jdbc:mysql://mysql:3306/ocstore
     username: store-connector
     password: psswd
     testWhileIdle: true

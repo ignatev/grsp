@@ -1,3 +1,4 @@
+/*
 package ru.grsp.backend.model.repository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -14,3 +15,4 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
     List<Integer> findProductIdByOrderId(@Param("id") Integer id);
 
 }
+*/
