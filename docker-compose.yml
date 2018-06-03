@@ -73,7 +73,7 @@ services:
     container_name: mongodb
     image: 'bitnami/mongodb:3.6'
     networks:
-      sak_net:
+      app_net:
         aliases:
           - mongo
           - mongodb
@@ -104,3 +104,4 @@ networks:
 volumes:
   opencart: {}
   opencart-db: {}
+  mongodb_data: {}
