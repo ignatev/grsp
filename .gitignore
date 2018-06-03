@@ -3,7 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 /out/
 .gradletasknamecache
-
+out/
 ### STS ###
 .apt_generated
 .classpath
