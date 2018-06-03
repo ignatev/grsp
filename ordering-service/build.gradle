@@ -4,6 +4,7 @@ plugins {
     id 'net.ltgt.apt' version '0.10'
     id 'org.springframework.boot' version '2.0.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.5.RELEASE'
+    id 'com.palantir.docker' version '0.19.2'
 }
 
 repositories {
@@ -15,6 +16,15 @@ repositories {
 group = 'ru.grsp'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
+docker {
+    dependsOn bootJar
+    name "${project.group}/${bootJar.baseName}:${bootJar.version}"
+    files bootJar.archivePath,
+            "/home/ignatev/work/proj/grsp/backend/backend/ordering-service/src/main/docker/run.sh"
+    dockerfile project.file("src/main/docker/Dockerfile")
+    buildArgs(['JAR_FILE': "${bootJar.archiveName}", 'SERVICE_NAME': "${bootJar.baseName}"])
+}
 
 dependencies {
     compile('io.debezium:debezium-embedded:0.7.4') {
