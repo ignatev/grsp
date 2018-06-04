@@ -1,7 +1,7 @@
 tracer.property: "I AM THE DEFAULT"
 spring:
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: localhost:9092
   jpa:
     hibernate:
       ddl-auto: none
@@ -13,8 +13,15 @@ spring:
         type: trace
         dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
-    url: jdbc:mysql://mysql:3306/ocstore
+    url: jdbc:mysql://localhost:3306/ocstore
     username: store-connector
     password: psswd
     testWhileIdle: true
     validationQuery: SELECT 1
+---
+spring:
+  profile: dev
+  kafka:
+    bootstrap-servers: kafka:9092
+  datasource:
+    url: jdbc:mysql://mysql:3306/ocstore

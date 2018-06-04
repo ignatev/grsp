@@ -5,9 +5,20 @@ spring:
     name: configserver
   autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   profiles:
-    active: native
+    active: default
   cloud:
     config:
       server:
         native:
           search-locations: file:/home/ignatev/work/proj/grsp/backend/backend/config-service/src/main/resources/config/ordering-service
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitlab.com/grsp/grsp-config.git
+          search-paths: ordering-service
+          username: user
+          password: password

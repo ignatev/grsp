@@ -1,5 +1,5 @@
 #!/bin/sh
 echo "========================================================"
-echo "Starting ${SERVICE_NAME}"
+echo "Starting ${SERVICE_NAME} with profile ${PROFILE}"
 echo "========================================================"
-java -jar /home/appuser/${SERVICE_NAME}.jar
+java -Dspring.profiles.active=${PROFILE} -jar /home/appuser/${SERVICE_NAME}.jar

@@ -3,6 +3,8 @@ services:
   config-service:
     container_name: config-service
     image: ru.grsp/config-service:${GRSP_VERSION}
+    environment:
+      PROFILE: dev
     networks:
       app_net:
         aliases:
@@ -14,6 +16,8 @@ services:
   ordering-service:
     container_name: ordering-service
     image: ru.grsp/ordering-service:${GRSP_VERSION}
+    environment:
+      PROFILE: dev
     networks:
       app_net:
         aliases:
