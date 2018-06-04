@@ -2,4 +2,4 @@
 echo "========================================================"
 echo "Starting ${SERVICE_NAME}"
 echo "========================================================"
-java -jar /grsp/${SERVICE_NAME}.jar
+java -jar /home/appuser/${SERVICE_NAME}.jar
