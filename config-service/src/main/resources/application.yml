@@ -5,7 +5,7 @@ spring:
     name: configserver
   autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   profiles:
-    active: default
+    active: native
   cloud:
     config:
       server:
