@@ -1,5 +1,5 @@
 {
-  "name": "orders-connector-1",
+  "name": "store-connector",
   "config": {
     "connector.class": "io.debezium.connector.mysql.MySqlConnector",
     "tasks.max": "1",
