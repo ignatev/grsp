@@ -7,9 +7,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "oc_order")
 public class Order {
-
     @Id
     Integer id;
-
-
 }

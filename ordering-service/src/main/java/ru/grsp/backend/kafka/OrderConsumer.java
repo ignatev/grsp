@@ -18,7 +18,7 @@ public class OrderConsumer {
 
     @KafkaListener(topics = "ocstore.ocstore.oc_order")
     public void listen(@Payload String message) throws IOException {
-        log.info(message);
+        //log.info(message);
         try {
             readToObject(message);
         } catch (IOException e) {
@@ -31,6 +31,9 @@ public class OrderConsumer {
         JsonNode actualObj = mapper.readTree(message);
         String jsonExp = "$.payload.after";
         LinkedHashMap payload = JsonPath.read(actualObj.toString(), jsonExp);
-        log.info("payload: {}", payload);
+        //log.info("payload: {}", payload);
+        log.info("payload: {}", payload.get("order_id"));
+
     }
+
 }

@@ -1,4 +1,3 @@
-/*
 package ru.grsp.backend.model;
 
 import lombok.Getter;
@@ -23,4 +22,3 @@ public class OrderProduct {
     @Column(name = "order_id")
     Integer orderId;
 }
-*/
