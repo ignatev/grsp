@@ -12,6 +12,7 @@
     "database.whitelist": "ocstore",
     "table.whitelist": "ocstore.oc_order",
     "database.history.kafka.bootstrap.servers": "kafka:9092",
-    "database.history.kafka.topic": "store.orders-history"
+    "database.history.kafka.topic": "store.orders-history",
+    "decimal.handling.mode": "double"
   }
 }
