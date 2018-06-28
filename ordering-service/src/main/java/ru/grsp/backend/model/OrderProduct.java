@@ -16,6 +16,7 @@ public class OrderProduct {
     Integer id;
 
     @Getter @Setter
+    @Column(name="product_id")
     Integer productId;
 
     @Getter @Setter
